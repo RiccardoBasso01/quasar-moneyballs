@@ -1,37 +1,10 @@
 <script setup>
-import { ref, computed, reactive } from 'vue';
-import { uid, useQuasar } from 'quasar'
+import { ref, reactive } from 'vue';
+import { useQuasar } from 'quasar'
+import { useStoreEntries } from 'src/stores/storeEntries';
 import { formatAmount, amountStatus } from 'src/js/utilities';
 
-const entries = ref([
-  {
-    id: uid(),
-    name: 'name',
-    amount: 98
-  },
-  {
-    id: uid(),
-    name: 'name',
-    amount: 0
-  },
-  {
-    id: uid(),
-    name: 'name',
-    amount: -98
-  },
-  {
-    id: uid(),
-    name: 'name',
-    amount: 89546
-  },
-])
-
-// Calculate the total amount
-const totalAmount = computed(() => {
-  let result = 0
-  entries.value.forEach(entry => result += entry.amount)
-  return result
-})
+const storeEntries = useStoreEntries()
 
 // Toggle form
 const addBannerVisible = ref(false)
@@ -51,8 +24,7 @@ const resetEntryForm = () => Object.assign(addEntryForm, addEntryFormDefault)
 
 // Add Entry
 const addEntry = () => {
-  const newEntry = Object.assign({}, addEntryForm, { id: uid() })
-  entries.value.push(newEntry)
+  storeEntries.addEntry(addEntryForm)
   resetEntryForm()
   nameRef.value.focus()
 }
@@ -76,23 +48,8 @@ function deleteModal({ reset }, entry) {
     cancel: {
       label: 'Annulla'
     }
-  }).onOk(() => {
-    deleteEntry(entry.id)
-    showNotif()
-  })
+  }).onOk(() => storeEntries.deleteEntry(entry.id))
     .onCancel(() => reset())
-}
-
-const deleteEntry = (id) => {
-  entries.value = entries.value.filter(entry => entry.id !== id)
-}
-
-const showNotif = () => {
-  $q.notify({
-    message: 'Entrata eliminata',
-    color: 'red',
-    position: "top"
-  })
 }
 </script>
 
@@ -120,7 +77,8 @@ const showNotif = () => {
 
     <!-- Other items -->
     <q-slide-item class="money-list-item q-mb-sm" :class="amountStatus(entry.amount)"
-      @right="deleteModal($event, entry)" v-for="entry in entries" :key="entry.id" left-color="green" right-color="red">
+      @right="deleteModal($event, entry)" v-for="entry in storeEntries.entries" :key="entry.id" left-color="green"
+      right-color="red">
       <!-- <template v-slot:left>
         <q-icon name="done" />
       </template> -->
@@ -144,8 +102,8 @@ const showNotif = () => {
   <q-footer class="bg-primary text-white q-pa-sm flex justify-between items-center">
     <h5 class="q-ma-none">Bilancio</h5>
 
-    <div :class="amountStatus(totalAmount)" class="total-amount-container q-pa-sm">
-      <div class="text-h5 text-white">{{ formatAmount(totalAmount) }}</div>
+    <div :class="amountStatus(storeEntries.totalAmount)" class="total-amount-container q-pa-sm">
+      <div class="text-h5 text-white">{{ formatAmount(storeEntries.totalAmount) }}</div>
     </div>
   </q-footer>
 </template>
