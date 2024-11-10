@@ -1,4 +1,4 @@
-# Moneyballs (quasar-moneyballs)
+# Salvadanaio (quasar-salvadanaio)
 
 A Quasar Project
 

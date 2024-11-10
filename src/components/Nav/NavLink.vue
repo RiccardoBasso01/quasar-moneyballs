@@ -1,5 +1,5 @@
 <template>
-  <q-item class="text-white" clickable tag="a" :to="props.link">
+  <q-item class="text-white" clickable tag="a" :to="props.link" exact-active-class="is-active">
     <q-item-section v-if="props.icon" avatar>
       <q-icon :name="props.icon" />
     </q-item-section>

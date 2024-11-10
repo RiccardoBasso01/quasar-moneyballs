@@ -1,8 +1,8 @@
 {
-  "name": "quasar-moneyballs",
+  "name": "quasar-salvadanaio",
   "version": "0.0.1",
   "description": "A Quasar Project",
-  "productName": "Moneyballs",
+  "productName": "Salvadanaio",
   "author": "Basso",
   "private": true,
   "scripts": {
