@@ -50,10 +50,18 @@ function deleteModal({ reset }) {
         <q-item>
             <q-item-section class="text-bold">
                 {{ props.entry.name }}
+
+                <q-popup-edit v-model="props.entry.name" auto-save v-slot="scope">
+                    <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set" />
+                </q-popup-edit>
             </q-item-section>
 
             <q-item-section side>
                 {{ formatAmount(props.entry.amount) }}
+
+                <q-popup-edit v-model.number="props.entry.amount" auto-save v-slot="scope">
+                    <q-input v-model="scope.value" dense autofocus counter type="number" @keyup.enter="scope.set" />
+                </q-popup-edit>
             </q-item-section>
         </q-item>
     </q-slide-item>
