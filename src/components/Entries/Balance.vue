@@ -7,7 +7,7 @@ const storeEntries = useStoreEntries()
 </script>
 
 <template>
-    <div class="flex justify-between items-center q-mb-sm">
+    <div v-if="storeEntries.totalAmountPaid" class="flex justify-between items-center q-mb-sm">
         <h6 class="q-ma-none">Pagato</h6>
 
         <div :class="amountStatus(storeEntries.totalAmountPaid)" class="total-amount-container q-pa-xs">
