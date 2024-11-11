@@ -69,6 +69,10 @@ function paidEntry({ reset }) {
                     <q-input v-model="scope.value" dense autofocus counter type="number" @keyup.enter="scope.set" />
                 </q-popup-edit>
             </q-item-section>
+
+            <q-item-section v-if="storeEntries.options.sort" side>
+                <q-icon name="toc"></q-icon>
+            </q-item-section>
         </q-item>
     </q-slide-item>
 </template>

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { uid, Notify } from "quasar";
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 
 export const useStoreEntries = defineStore("content", () => {
   // STATE
@@ -30,6 +30,10 @@ export const useStoreEntries = defineStore("content", () => {
       paid: false,
     },
   ]);
+
+  const options = reactive({
+    sort: false,
+  });
 
   // GETTERS
   const totalAmount = computed(() => {
@@ -62,5 +66,12 @@ export const useStoreEntries = defineStore("content", () => {
   };
 
   // RETURN
-  return { entries, totalAmount, totalAmountPaid, addEntry, deleteEntry };
+  return {
+    entries,
+    options,
+    totalAmount,
+    totalAmountPaid,
+    addEntry,
+    deleteEntry,
+  };
 });
