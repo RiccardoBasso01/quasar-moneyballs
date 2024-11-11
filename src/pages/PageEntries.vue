@@ -1,4 +1,5 @@
 <script setup>
+import { Sortable } from "sortablejs-vue3";
 import { useStoreEntries } from 'src/stores/storeEntries';
 
 // Components
@@ -12,13 +13,18 @@ const storeEntries = useStoreEntries()
 
 <template>
   <q-page>
+
     <!-- List -->
     <q-list class="q-ma-lg">
       <AddEntries />
       <NothingHere v-if="!storeEntries.entries.length" />
 
       <!-- Other items -->
-      <Entry v-for="entry in storeEntries.entries" :key="entry.id" :entry="entry" />
+      <Sortable :list="storeEntries.entries" item-key="id" tag="div">
+        <template #item="{ element }">
+          <Entry :entry="element" :key="element.id" />
+        </template>
+      </Sortable>
     </q-list>
 
     <!-- Footer -->
