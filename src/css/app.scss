@@ -28,8 +28,8 @@
   border-left: 5px solid;
   border-left-color: var(--color);
 
-  &.amount-positive,
-  &.amount-negative {
+  &.amount-positive.paid,
+  &.amount-negative.paid {
     box-shadow: 0 0 3px var(--color);
   }
 }
@@ -40,9 +40,17 @@
 }
 
 .amount-positive {
-  --color: #{$positive-light};
+  --color: #{$positive};
+
+  &.paid {
+    --color: #{$positive-light};
+  }
 }
 
 .amount-negative {
-  --color: #{$negative-light};
+  --color: #{$negative};
+
+  &.paid {
+    --color: #{$negative-light};
+  }
 }

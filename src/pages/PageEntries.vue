@@ -22,7 +22,7 @@ const storeEntries = useStoreEntries()
     </q-list>
 
     <!-- Footer -->
-    <q-footer class="bg-primary text-white q-pa-sm flex justify-between items-center">
+    <q-footer class="bg-primary text-white q-pa-sm">
       <Balance />
     </q-footer>
   </q-page>

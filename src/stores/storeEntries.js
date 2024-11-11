@@ -38,6 +38,14 @@ export const useStoreEntries = defineStore("content", () => {
     return result;
   });
 
+  const totalAmountPaid = computed(() => {
+    let result = 0;
+    entries.value
+      .filter((entry) => entry.paid)
+      .forEach((entry) => (result += entry.amount));
+    return result;
+  });
+
   // ACTIONS
   const addEntry = (entry) => {
     const newEntry = Object.assign({}, entry, { id: uid() });
@@ -54,5 +62,5 @@ export const useStoreEntries = defineStore("content", () => {
   };
 
   // RETURN
-  return { entries, totalAmount, addEntry, deleteEntry };
+  return { entries, totalAmount, totalAmountPaid, addEntry, deleteEntry };
 });
