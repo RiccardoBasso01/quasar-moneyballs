@@ -35,14 +35,20 @@ function deleteModal({ reset }) {
     }).onOk(() => storeEntries.deleteEntry(props.entry.id))
         .onCancel(() => reset())
 }
+
+function paidEntry({ reset }) {
+    props.entry.paid = !props.entry.paid
+    reset()
+}
 </script>
 
 <template>
-    <q-slide-item class="money-list-item q-mb-sm" :class="amountStatus(props.entry.amount)" @right="deleteModal($event)"
-        left-color="green" right-color="red">
-        <!-- <template v-slot:left>
-        <q-icon name="done" />
-      </template> -->
+    <q-slide-item class="money-list-item q-mb-sm"
+        :class="[amountStatus(props.entry.amount), { 'bg-grey-5 text-strike': props.entry.paid }]" @right="deleteModal"
+        @left="paidEntry" left-color="green" right-color="red">
+        <template v-slot:left>
+            <q-icon name="done" />
+        </template>
         <template v-slot:right>
             <q-icon name="delete" />
         </template>

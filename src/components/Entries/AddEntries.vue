@@ -11,7 +11,8 @@ const addItem = () => addBannerVisible.value = !addBannerVisible.value
 // Set Form values
 const addEntryFormDefault = {
     name: '',
-    amount: null
+    amount: null,
+    paid: false,
 }
 
 // Add Entry

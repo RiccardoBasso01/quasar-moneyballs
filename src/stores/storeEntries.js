@@ -9,21 +9,25 @@ export const useStoreEntries = defineStore("content", () => {
       id: uid(),
       name: "name",
       amount: 98,
+      paid: false,
     },
     {
       id: uid(),
       name: "merda",
       amount: 0,
+      paid: false,
     },
     {
       id: uid(),
       name: "porco dio che fastiidio",
       amount: -98,
+      paid: false,
     },
     {
       id: uid(),
       name: "name",
       amount: 89546,
+      paid: false,
     },
   ]);
 
