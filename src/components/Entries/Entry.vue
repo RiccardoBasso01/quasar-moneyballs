@@ -2,6 +2,7 @@
 import { useQuasar } from 'quasar'
 import { useStoreEntries } from 'src/stores/storeEntries';
 import { formatAmount, amountStatus } from 'src/js/utilities';
+import vSelectAll from 'src/directives/directiveSelectAll';
 
 const storeEntries = useStoreEntries()
 
@@ -58,7 +59,7 @@ function paidEntry({ reset }) {
                 {{ props.entry.name }}
 
                 <q-popup-edit v-model="props.entry.name" auto-save v-slot="scope">
-                    <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set" />
+                    <q-input v-model="scope.value" dense autofocus counter @keyup.enter="scope.set" v-select-all />
                 </q-popup-edit>
             </q-item-section>
 
@@ -66,7 +67,8 @@ function paidEntry({ reset }) {
                 {{ formatAmount(props.entry.amount) }}
 
                 <q-popup-edit v-model.number="props.entry.amount" auto-save v-slot="scope">
-                    <q-input v-model="scope.value" dense autofocus counter type="number" @keyup.enter="scope.set" />
+                    <q-input v-model="scope.value" dense autofocus counter type="number" @keyup.enter="scope.set"
+                        v-select-all />
                 </q-popup-edit>
             </q-item-section>
 

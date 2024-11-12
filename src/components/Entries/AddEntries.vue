@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useStoreEntries } from 'src/stores/storeEntries';
+import vSelectAll from 'src/directives/directiveSelectAll';
 
 const storeEntries = useStoreEntries()
 
@@ -41,8 +42,10 @@ const addEntry = () => {
     <!-- Form -->
     <q-item v-if="addBannerVisible" class="money-list-item block q-mb-sm">
         <q-form class="row q-col-gutter-lg" @submit="addEntry">
-            <q-input class="col-5" type="text" outlined v-model="addEntryForm.name" label="Nome" ref="nameRef" />
-            <q-input class="col-5" type="number" outlined v-model.number="addEntryForm.amount" label="Quantità" />
+            <q-input class="col-5" type="text" outlined v-model="addEntryForm.name" label="Nome" ref="nameRef"
+                v-select-all />
+            <q-input class="col-5" type="number" outlined v-model.number="addEntryForm.amount" label="Quantità"
+                v-select-all />
             <div class="col-2 flex items-center ">
                 <q-btn class="full-width" label="Submit" type="Inserisci" color="primary" />
             </div>
