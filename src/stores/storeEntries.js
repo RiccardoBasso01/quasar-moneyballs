@@ -65,6 +65,10 @@ export const useStoreEntries = defineStore("content", () => {
     });
   };
 
+  const reorderEntries = ({ newIndex, oldIndex }) => {
+    entries.value.splice(newIndex, 0, ...entries.value.splice(oldIndex, 1));
+  };
+
   // RETURN
   return {
     entries,
@@ -73,5 +77,6 @@ export const useStoreEntries = defineStore("content", () => {
     totalAmountPaid,
     addEntry,
     deleteEntry,
+    reorderEntries,
   };
 });

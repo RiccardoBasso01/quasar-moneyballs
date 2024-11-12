@@ -70,7 +70,7 @@ function paidEntry({ reset }) {
                 </q-popup-edit>
             </q-item-section>
 
-            <q-item-section v-if="storeEntries.options.sort" side>
+            <q-item-section v-if="storeEntries.options.sort" side class="handle-sort">
                 <q-icon name="toc"></q-icon>
             </q-item-section>
         </q-item>

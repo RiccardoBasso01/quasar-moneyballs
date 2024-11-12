@@ -20,7 +20,8 @@ const storeEntries = useStoreEntries()
       <NothingHere v-if="!storeEntries.entries.length" />
 
       <!-- Other items -->
-      <Sortable :list="storeEntries.entries" item-key="id" tag="div">
+      <Sortable :list="storeEntries.entries" item-key="id" tag="div" :options="{ handle: '.handle-sort' }"
+        @end="storeEntries.reorderEntries">
         <template #item="{ element }">
           <Entry :entry="element" :key="element.id" />
         </template>

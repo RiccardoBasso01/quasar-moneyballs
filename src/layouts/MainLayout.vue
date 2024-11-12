@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import NavLink from 'src/components/Nav/NavLink.vue'
+import { useStoreEntries } from 'src/stores/storeEntries';
+
+const storeEntries = useStoreEntries()
 
 defineOptions({
   name: 'MainLayout'
@@ -38,6 +41,9 @@ function toggleLeftDrawer() {
             Salvadanaio
           </div>
         </q-toolbar-title>
+
+        <q-toggle v-model="storeEntries.options.sort" color="blue" label="Riordina" left-label
+          v-if="$route.fullPath === '/'" />
       </q-toolbar>
     </q-header>
 
