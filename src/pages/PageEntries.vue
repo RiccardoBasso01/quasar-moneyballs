@@ -29,8 +29,10 @@ const storeEntries = useStoreEntries()
     </q-list>
 
     <!-- Footer -->
-    <q-footer class="bg-primary text-white q-pa-sm">
-      <Balance />
-    </q-footer>
+    <transition appear enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+      <q-footer class="bg-primary text-white q-pa-sm" v-show="storeEntries.entries.length">
+        <Balance />
+      </q-footer>
+    </transition>
   </q-page>
 </template>
