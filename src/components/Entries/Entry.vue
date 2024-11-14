@@ -1,10 +1,11 @@
 <script setup>
 import { useQuasar } from 'quasar'
 import { useStoreEntries } from 'src/stores/storeEntries';
+import { useStoreSettings } from 'src/stores/storeSettings';
 import { formatAmount, amountStatus } from 'src/js/utilities';
 import vSelectAll from 'src/directives/directiveSelectAll';
 
-const storeEntries = useStoreEntries()
+const storeEntries = useStoreEntries(), storeSettings = useStoreSettings()
 
 // Props
 const props = defineProps({
@@ -17,11 +18,16 @@ const props = defineProps({
 // Dialog
 const $q = useQuasar()
 function deleteModal({ reset }) {
+    if (storeSettings.settings.promptToDelete) promptToDelete(reset)
+    else storeEntries.deleteEntry(props.entry.id)
+}
+
+const promptToDelete = (reset) => {
     $q.dialog({
         title: 'Cancella',
         message: `Sicuro di voler eliminare questa entrata?
     <div>
-      ${props.entry.name} : ${formatAmount(props.entry.amount)}
+      ${props.entry.name} : ${storeSettings.formatAmount(props.entry.amount)}
     </div>
     `,
         cancel: true,
@@ -64,7 +70,7 @@ function paidEntry({ reset }) {
             </q-item-section>
 
             <q-item-section side>
-                {{ formatAmount(props.entry.amount) }}
+                {{ storeSettings.formatAmount(props.entry.amount) }}
 
                 <q-popup-edit v-model.number="props.entry.amount" auto-save v-slot="scope">
                     <q-input v-model="scope.value" dense autofocus counter type="number" @keyup.enter="scope.set"
