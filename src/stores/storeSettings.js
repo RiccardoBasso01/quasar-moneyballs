@@ -1,11 +1,19 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { computed, reactive, watch } from "vue";
+import { Dark } from "quasar";
 
 export const useStoreSettings = defineStore("settings", () => {
   // STATE
   const settings = reactive({
     promptToDelete: true,
     currentCurrency: "€",
+    darkMode: false,
+  });
+
+  // WATCHERS
+  watch(settings, (newSettings) => {
+    // On theme changes
+    Dark.set(newSettings.darkMode);
   });
 
   // GETTERS

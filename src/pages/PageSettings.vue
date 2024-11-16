@@ -47,6 +47,44 @@ const setCurrency = (currency) => storeSettings.settings.currentCurrency = curre
                         </q-list>
                     </q-btn-dropdown>
                 </q-item>
+
+                <q-separator class="q-my-md" />
+
+                <q-item-label header>Temi</q-item-label>
+
+                <q-item>
+                    <q-item-section avatar>
+                        <q-radio v-model="storeSettings.settings.darkMode" checked-icon="task_alt"
+                            unchecked-icon="panorama_fish_eye" :val="false" />
+                    </q-item-section>
+
+                    <q-item-section>
+                        <q-item-label>Tema chiaro</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <q-item>
+                    <q-item-section avatar>
+                        <q-radio v-model="storeSettings.settings.darkMode" checked-icon="task_alt"
+                            unchecked-icon="panorama_fish_eye" :val="true" />
+                    </q-item-section>
+
+                    <q-item-section>
+                        <q-item-label>Tema scuro</q-item-label>
+                    </q-item-section>
+                </q-item>
+
+                <q-item tag="label" v-ripple>
+                    <q-item-section avatar>
+                        <q-radio v-model="storeSettings.settings.darkMode" checked-icon="task_alt"
+                            unchecked-icon="panorama_fish_eye" val="auto" />
+                    </q-item-section>
+
+                    <q-item-section>
+                        <q-item-label>Auto</q-item-label>
+                        <q-item-label caption>Segue le impostazioni del dispositivo</q-item-label>
+                    </q-item-section>
+                </q-item>
             </q-list>
         </div>
     </q-page>
