@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { uid, Notify } from "quasar";
-import { ref, computed, reactive } from "vue";
+import { uid, Notify, LocalStorage } from "quasar";
+import { ref, computed, reactive, watch } from "vue";
 
 export const useStoreEntries = defineStore("content", () => {
   // STATE
@@ -30,6 +30,12 @@ export const useStoreEntries = defineStore("content", () => {
       paid: false,
     },
   ]);
+
+  watch(entries, (newEntries) => {
+    // Save data
+    LocalStorage.set("entries", newEntries);
+    console.log("salvato dio cruciverba");
+  });
 
   const options = reactive({
     sort: false,
@@ -69,6 +75,11 @@ export const useStoreEntries = defineStore("content", () => {
     entries.value.splice(newIndex, 0, ...entries.value.splice(oldIndex, 1));
   };
 
+  const loadEntries = () => {
+    const newEntries = LocalStorage.getItem("entries");
+    if (newEntries) Object.assign(entries, newEntries);
+  };
+
   // RETURN
   return {
     entries,
@@ -78,5 +89,6 @@ export const useStoreEntries = defineStore("content", () => {
     addEntry,
     deleteEntry,
     reorderEntries,
+    loadEntries,
   };
 });
