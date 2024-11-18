@@ -44,6 +44,12 @@
 
   &.paid {
     --color: #{$positive-light};
+
+    background-color: $grey-4;
+
+    .body--dark & {
+      background-color: $grey-8;
+    }
   }
 }
 

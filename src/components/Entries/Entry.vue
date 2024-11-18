@@ -51,8 +51,8 @@ function paidEntry({ reset }) {
 
 <template>
     <q-slide-item class="money-list-item q-mb-sm"
-        :class="[amountStatus(props.entry.amount), { 'bg-grey-4 text-strike paid': props.entry.paid }]"
-        @right="deleteModal" @left="paidEntry" left-color="green" right-color="red">
+        :class="[amountStatus(props.entry.amount), { 'text-strike paid': props.entry.paid }]" @right="deleteModal"
+        @left="paidEntry" left-color="green" right-color="red">
         <template v-slot:left>
             <q-icon name="done" />
         </template>
