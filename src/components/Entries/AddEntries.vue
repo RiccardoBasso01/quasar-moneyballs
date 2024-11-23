@@ -47,7 +47,7 @@ const addEntry = () => {
             <q-input class="col-5" type="number" outlined v-model.number="addEntryForm.amount" label="Quantità"
                 v-select-all />
             <div class="col-2 flex items-center ">
-                <q-btn class="full-width" label="Submit" type="Inserisci" color="primary" />
+                <q-btn class="full-width" label="Ok" type="Inserisci" color="primary" />
             </div>
         </q-form>
     </q-item>

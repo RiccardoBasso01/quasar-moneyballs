@@ -21,7 +21,6 @@ export const useStoreSettings = defineStore("settings", () => {
 
   // GETTERS
   const formatAmount = (number) => {
-    console.log(number);
     let currency;
     let country;
     if (settings.currentCurrency === "€") {
