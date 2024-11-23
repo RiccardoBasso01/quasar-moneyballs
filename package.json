@@ -8,7 +8,9 @@
   "scripts": {
     "icon": "icongenie generate -i app-icon.png --skip-trim",
     "dev": "quasar dev",
-    "build": "quasar build"
+    "build": "quasar build",
+    "dev:android": "quasar dev -m capacitor -T android",
+    "build:android": "quasar build -m capacitor -T android --ide"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
